@@ -1,5 +1,5 @@
 import Router from "express";
-import { getAllDogs } from "../controllers/dogController.js";
+import { getAllDogs, getDogById } from "../controllers/dogController.js";
 const router = Router();
 
 router.get('/', getAllDogs) 
@@ -7,11 +7,7 @@ router.get('/', getAllDogs)
  
 
 
-router.get('/api/perros/:id', async (req, res) => {
-  const { id } = req.params
-  const dog = await Dog.findById(id)
-  return res.status(200).json(dog)
-})
+router.get('/id', getDogById)
 
 router.post('/api/perros', async (req, res) => {
   const newDog = new Dog({ ...req.body })
