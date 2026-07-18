@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Max",
+    "breed": "Labrador Retriever",
+    "age": 3,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Charlie",
+    "breed": "German Shepherd",
+    "age": 5,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Buddy",
+    "breed": "Golden Retriever",
+    "age": 2,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Cooper",
+    "breed": "French Bulldog",
+    "age": 4,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Jack",
+    "breed": "Bulldog",
+    "age": 6,
+    "isGoodBoy": false
+  },
+  {
+    "name": "Rocky",
+    "breed": "Poodle",
+    "age": 1,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Bear",
+    "breed": "Beagle",
+    "age": 7,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Duke",
+    "breed": "Rottweiler",
+    "age": 4,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Toby",
+    "breed": "German Shorthaired Pointer",
+    "age": 8,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Cody",
+    "breed": "Dachshund",
+    "age": 3,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Buster",
+    "breed": "Pembroke Welsh Corgi",
+    "age": 5,
+    "isGoodBoy": false
+  },
+  {
+    "name": "Milo",
+    "breed": "Australian Shepherd",
+    "age": 2,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Winston",
+    "breed": "Yorkshire Terrier",
+    "age": 9,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Murphy",
+    "breed": "Boxer",
+    "age": 4,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Leo",
+    "breed": "Siberian Husky",
+    "age": 6,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Zeus",
+    "breed": "Great Dane",
+    "age": 3,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Teddy",
+    "breed": "Doberman Pinscher",
+    "age": 7,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Oscar",
+    "breed": "Cavalier King Charles Spaniel",
+    "age": 1,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Gus",
+    "breed": "Shih Tzu",
+    "age": 5,
+    "isGoodBoy": true
+  },
+  {
+    "name": "Jax",
+    "breed": "Boston Terrier",
+    "age": 2,
+    "isGoodBoy": false
+  }
+]

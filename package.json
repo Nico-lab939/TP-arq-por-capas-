@@ -1,0 +1,25 @@
+{
+  "name": "arq-crud01",
+  "version": "1.0.0",
+  "description": "primer tarea de arquitectura por capas ",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --env-file .env app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diplomaturabackend-untref/Ejercitacion-Arquitectura-Backend.git"
+  },
+  "author": "Nicola Tesio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diplomaturabackend-untref/Ejercitacion-Arquitectura-Backend/issues"
+  },
+  "homepage": "https://github.com/diplomaturabackend-untref/Ejercitacion-Arquitectura-Backend#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.7.4"
+  }
+}

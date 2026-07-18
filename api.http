@@ -1,0 +1,29 @@
+### Obtener todos los perros
+GET http://localhost:3000/api/perros
+
+### Obtener un perro por ID
+GET http://localhost:3000/api/perros/YOUR_DOG_ID
+
+### Agregar un nuevo perro
+POST http://localhost:3000/api/perros
+Content-Type: application/json
+
+{
+  "name": "Fido",
+  "breed": "Golden Retriever",
+  "age": 4,
+  "isGoodBoy": true
+}
+
+### Actualizar un perro
+PUT http://localhost:3000/api/perros/YOUR_DOG_ID
+Content-Type: application/json
+
+{
+  "name": "Fido El Magnifico",
+  "age": 5,
+  "isGoodBoy": false
+}
+
+### Eliminar un perro
+DELETE http://localhost:3000/api/perros/YOUR_DOG_ID
