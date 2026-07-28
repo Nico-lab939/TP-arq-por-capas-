@@ -20,6 +20,8 @@
   "homepage": "https://github.com/diplomaturabackend-untref/Ejercitacion-Arquitectura-Backend#readme",
   "dependencies": {
     "express": "^5.2.1",
-    "mongoose": "^9.7.4"
+    "mongoose": "^9.7.4",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1"
   }
 }

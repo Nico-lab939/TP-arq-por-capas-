@@ -2,17 +2,45 @@
 
 ## Descripción del Proyecto 📋
 
-En este proyecto, desarrollarás una API RESTful utilizando **Express** y **MongoDB** que permitirá realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre una colección de perros. La aplicación tomará como base el archivo `dogs.json`, que contiene detalles de perros, como su nombre, raza, y edad. Tu objetivo es modelar y manipular esta información mediante una API que siga las prácticas de desarrollo vistas en clase.
+En este proyecto se desarrolló una API RESTful utilizando **Express** y **MongoDB** que permite realizar operaciones CRUD sobre una colección de perros. Los datos provienen del archivo `dogs.json`, importado en MongoDB Atlas bajo la base `Base_Dogs` y la colección `Collection_Dogs`.
 
-> **Instrucciones:** Al finalizar, deberás completar este README.md con una documentación detallada de los endpoints de tu API. Asegúrate de incluir para cada endpoint:
-> - Método HTTP (GET, POST, PUT, DELETE).
-> - Ruta del endpoint.
-> - Descripción de parámetros o query params.
-> - Ejemplo del cuerpo de solicitud (si aplica).
-> - Posibles respuestas en formato JSON.
-> - Códigos de estado HTTP asociados.
-> 
-> Esta documentación te ayudará a estructurar tu API de forma clara y a mejorar la comprensión de los usuarios.
+### Arquitectura por capas implementada
+
+La aplicación sigue una arquitectura por capas con separación de responsabilidades:
+
+| Capa | Archivo | Responsabilidad |
+|------|---------|-----------------|
+| **Configuración** | `config/database.js` | Conexión a MongoDB mediante variables de entorno |
+| **Modelo** | `models/dog.js` | Esquema Mongoose del perro, mapeado a `Collection_Dogs` |
+| **Controlador** | `controllers/dogController.js` | Lógica de negocio del CRUD con `try/catch` y propagación de errores |
+| **Rutas** | `routes/dogRoutes.js` | Definición limpia de endpoints delegando al controlador |
+| **Middleware** | `middlewares/errorHandler.js` | Manejo centralizado de errores sin magic numbers |
+| **Aplicación** | `app.js` | Punto de entrada, montaje de rutas y middlewares globales |
+
+### Manejo de errores
+
+El módulo `middlewares/errorHandler.js` exporta:
+- **`HTTP_STATUS`**: constantes semánticas para códigos HTTP (200, 201, 400, 404, 500).
+- **`createError(status, message)`**: factory para crear errores con status personalizado.
+- **`notFoundHandler`**: captura rutas inexistentes (404).
+- **`errorHandler`**: middleware global que procesa `CastError`, `ValidationError` y errores custom.
+
+Los controladores propagan errores con `next(error)`, manteniendo bajo acoplamiento entre capas.
+
+### Base de datos
+
+- **Base de datos:** `Base_Dogs`
+- **Colección:** `Collection_Dogs`
+- **Datos:** importados desde `json/dogs.json` en MongoDB Compass
+
+### Documentación interactiva (Swagger)
+
+La API incluye documentación interactiva generada con **Swagger UI**. Permite consultar todos los endpoints, ver los esquemas de request/response y probar las operaciones directamente desde el navegador.
+
+1. Iniciar el servidor: `npm run dev`
+2. Abrir en el navegador: **http://localhost:3000/api-docs**
+
+Desde Swagger UI podés ejecutar cada endpoint (GET, POST, PUT, DELETE), completar parámetros y cuerpos de solicitud, y ver las respuestas en tiempo real.
 
 ## Configuración del Entorno ⚙️
 
@@ -64,10 +92,16 @@ A continuación se detallan los endpoints disponibles en la API para gestionar l
     }
   ]
   ```
+- **Respuesta de Error (Código `404 Not Found`):**
+  ```json
+  {
+    "message": "No se encontraron perros"
+  }
+  ```
 - **Respuesta de Error (Código `500 Internal Server Error`):**
   ```json
   {
-    "mensaje": "Error al obtener los perros"
+    "message": "Error interno del servidor"
   }
   ```
 </details>
@@ -96,7 +130,13 @@ A continuación se detallan los endpoints disponibles en la API para gestionar l
 - **Respuesta de Error (Código `404 Not Found`):**
   ```json
   {
-    "mensaje": "Perro no encontrado"
+    "message": "Perro no encontrado"
+  }
+  ```
+- **Respuesta de Error (Código `400 Bad Request`):** ID con formato inválido.
+  ```json
+  {
+    "message": "Cast to ObjectId failed for value ..."
   }
   ```
 </details>
@@ -134,7 +174,7 @@ A continuación se detallan los endpoints disponibles en la API para gestionar l
 - **Respuesta de Error (Código `400 Bad Request`):**
   ```json
   {
-    "mensaje": "Los datos proporcionados son inválidos."
+    "message": "Dog validation failed: ..."
   }
   ```
 </details>
@@ -172,7 +212,13 @@ A continuación se detallan los endpoints disponibles en la API para gestionar l
 - **Respuesta de Error (Código `404 Not Found`):**
   ```json
   {
-    "mensaje": "Perro no encontrado"
+    "message": "Perro no encontrado"
+  }
+  ```
+- **Respuesta de Error (Código `400 Bad Request`):** ID con formato inválido.
+  ```json
+  {
+    "message": "Cast to ObjectId failed for value ..."
   }
   ```
 </details>
@@ -197,7 +243,13 @@ A continuación se detallan los endpoints disponibles en la API para gestionar l
 - **Respuesta de Error (Código `404 Not Found`):**
   ```json
   {
-    "mensaje": "Perro no encontrado"
+    "message": "Perro no encontrado"
+  }
+  ```
+- **Respuesta de Error (Código `400 Bad Request`):** ID con formato inválido.
+  ```json
+  {
+    "message": "Cast to ObjectId failed for value ..."
   }
   ```
 </details>
@@ -237,10 +289,13 @@ El archivo `dogs.json` incluye propiedades de cada perro. Deberás crear un mode
   - dogController.js
 /json
   - dogs.json
+/middlewares
+  - errorHandler.js
 /README.md
 /app.js
 /config/
   - database.js
+  - swagger.js
 /models/
   - dog.js
 /routes/
@@ -249,10 +304,12 @@ El archivo `dogs.json` incluye propiedades de cada perro. Deberás crear un mode
 
 ### Descripción de Archivos 📝
 
+- **/middlewares/**: Manejo centralizado de errores HTTP.
 - **/json**: Contiene el archivo dogs.json con los datos de los perros.
 - **/README.md**: Archivo con la descripción del proyecto y pasos para ejecutarlo.
 - **/app.js**: Archivo principal de la aplicación Express.
 - **/config/database.js**: Configuración de la conexión a MongoDB.
+- **/config/swagger.js**: Especificación OpenAPI y documentación interactiva.
 - **/models/**: Contiene el modelo de datos `Dog` para MongoDB.
 - **/routes/**: Define las rutas de los endpoints del CRUD.
 - **/controllers/**: Define los controladores de los endpoints del CRUD.
